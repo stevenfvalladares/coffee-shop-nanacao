@@ -35,4 +35,12 @@ describe("Operaciones CRUD de cafes", () => {
     expect(status).toBe(201);
     expect(items).toContainEqual(item);
   });
+
+  it("Obteniendo un 400 al actualizar un tipo de cafe", async () => {
+    const id = 4;
+    const item = { id, nombre: "Latte" };
+    const response = await request(server).put("/cafes/".concat(id)).send(item);
+    const status = response.statusCode;
+    expect(status).toBe(400);
+  });
 });
